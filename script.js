@@ -48,12 +48,15 @@ map.addEventListener("click", e => {
   guessDot.style.backgroundColor = "red";
   guessDot.style.borderRadius = "50%";
   guessDot.style.left = `${mx - 5}px`;
-  guessDot.style.top = `${my - 5}px`;
+ guessDot.style.top = `${my - 5 + 1000}px`;
   container.appendChild(guessDot);
+  
+
+
 
   // Draw target dot
   const targetX = ((target.x + worldWidth/2) / worldWidth) * map.width;
-  const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height-1000px;
+  const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height;
 
   const targetDot = document.createElement("div");
   targetDot.className = "dot";
@@ -63,6 +66,6 @@ map.addEventListener("click", e => {
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
   targetDot.style.left = `${targetX - 5}px`;
-  targetDot.style.top = `${targetZ - 5}px`;
+  targetDot.style.top = `${targetZ - 5 + 1000}px`;
   container.appendChild(targetDot);
 });
