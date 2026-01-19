@@ -1,68 +1,106 @@
-const map = document.getElementById("map");
+const map = document.getElementById("map")
+const lockin = document.getElementById("lockin")
 const container = map.parentElement; // container div to position dots
-let selectedLayer = null;
+let selectedLayer = "surface";
+let locations = [];
+
+
+// Setup rounds
+let LockedIn = false;
+let round = 1;
+let target =null;
+let score=0;
+let lastDistance = 0;
+
+
+// Setup json
+fetch("data/locations.json")
+  .then(response => response.json())
+  .then(data => {
+    locations = data;
+    console.log("Locations loaded:", locations);
+    setupRound();
+  })
+  .catch(err => console.error("Failed to load locations:", err));
 
 // World dimensions
 const worldWidth = 4000;  // X-axis: -2000 → 2000
 const worldHeight = 4000; // Z-axis: -2000 → 2000
 
-// Example target (in world coordinates)
-const target = { x: 800, z: -600 };
+
 
 // Layer selection
 document.querySelectorAll("#layers button").forEach(btn => {
   btn.onclick = () => {
-    selectedLayer = btn.dataset.layer;
-    console.log("Layer selected:", selectedLayer);
+    if(!LockedIn){
+      selectedLayer = btn.dataset.layer;
+      console.log("Layer selected:", selectedLayer);
 
-    // Optional: Change map image based on layer
-    if (selectedLayer === "surface") map.src = "maps/surface.png";
-    else if (selectedLayer === "jellyshroom") map.src = "maps/jellyshroom.png";
-    else if (selectedLayer === "lost_river") map.src = "maps/lost_river.png";
+      
+      if (selectedLayer === "surface") map.src = "maps/surface.png";
+      else if (selectedLayer === "jellyshroom") map.src = "maps/jellyshroom.png";
+      else if (selectedLayer === "lost_river") map.src = "maps/lost_river.png";
+      else if (selectedLayer === "lava_lakes") map.src = "maps/lava_lakes.png";
+      else if (selectedLayer === "lava_zone") map.src = "maps/lava_zone.png";
+    };
+    
   };
 });
-
-// Click on map
-map.addEventListener("click", e => {
-  if (!selectedLayer) {
-    alert("Choose a layer first!");
+function mapClick(e)
+{
+  if (!target) {
+    alert("Locations are still loading. Please wait...");
     return;
   }
+  if (!selectedLayer) {
+      alert("Choose a layer first!");
+      return;
+    }
 
-  // Click relative to image
-  const mx = e.offsetX;
-  const my = e.offsetY;
+    // Click relative to image
+    const mx = e.offsetX;
+    const my = e.offsetY;
 
-  // Convert to world coordinates
-  const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
-  const worldZ = (my / map.height) * worldHeight - worldHeight / 2;
+    // Convert to world coordinates
+    const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
+    const worldZ = (my / map.height) * worldHeight - worldHeight / 2;
 
-  console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
+    console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
 
-  // Distance to target
-  const dx = worldX - target.x;
-  const dz = worldZ - target.z;
-  const distance = Math.sqrt(dx*dx + dz*dz);
-  console.log("Distance to target:", distance.toFixed(0), "units");
+    // Distance to target
+    const dx = worldX - target.x;
+    const dz = worldZ - target.z;
+    const distance = Math.sqrt(dx * dx + dz * dz);
+    lastDistance=distance;
+    console.log("Distance to target:", distance.toFixed(0), "units");
 
-  // Remove old dots
-  container.querySelectorAll(".dot").forEach(dot => dot.remove());
+    // Remove old dots
+    container.querySelectorAll(".dot").forEach(dot => dot.remove());
 
-  // Draw guess dot (shifted down by 1000px)
-  const guessDot = document.createElement("div");
-  guessDot.className = "dot";
-  guessDot.style.position = "absolute";
-  guessDot.style.width = "10px";
-  guessDot.style.height = "10px";
-  guessDot.style.backgroundColor = "red";
-  guessDot.style.borderRadius = "50%";
-  guessDot.style.left = `${mx +10}px`;
-  guessDot.style.top = `${my - 5 + 450}px`; // <-- 1000px downward shift
-  container.appendChild(guessDot);
+    // Draw guess dot 
+    const guessDot = document.createElement("div");
+    guessDot.className = "dot";
+    guessDot.style.position = "absolute";
+    guessDot.style.width = "10px";
+    guessDot.style.height = "10px";
+    guessDot.style.backgroundColor = "red";
+    guessDot.style.borderRadius = "50%";
+    guessDot.style.left = `${mx + 10}px`;
+    guessDot.style.top = `${my - 5 + 450}px`; 
+    container.appendChild(guessDot);
+}
 
-  // Draw target dot (shifted down by 1000px)
-  const targetX = ((target.x + worldWidth/2) / worldWidth) * map.width;
-  const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height;
+// Map click
+map.addEventListener("click", e => {
+  if (!LockedIn) {
+    mapClick(e);
+  }
+});
+
+// Function to draw target dot (outside the click listener)
+function DrawTarget() {
+  const targetX = ((target.x + worldWidth / 2) / worldWidth) * map.width;
+  const targetZ = ((target.z + worldHeight / 2) / worldHeight) * map.height;
 
   const targetDot = document.createElement("div");
   targetDot.className = "dot";
@@ -72,6 +110,58 @@ map.addEventListener("click", e => {
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
   targetDot.style.left = `${targetX + 10}px`;
-  targetDot.style.top = `${targetZ - 5 + 450}px`; // <-- 1000px downward shift
+  targetDot.style.top = `${targetZ - 5 + 450}px`;
   container.appendChild(targetDot);
-});
+}
+function setupRound()
+{
+  LockedIn=false;
+  container.querySelectorAll(".dot").forEach(dot => dot.remove());
+  lockin.innerText = "Lock In"; // reset button text
+  if (locations.length === 0) {
+    alert("No more locations left!");
+    return;
+  }
+  const randomIndex = Math.floor(Math.random() * locations.length);
+  target = locations.splice(randomIndex, 1)[0];
+  
+  selectedLayer = target.layer;
+  map.src = `maps/${selectedLayer}.png`;
+
+  console.log("New target for this round:", target);
+  
+  //more will be added here
+}
+function LockIn()
+{
+  LockedIn = true;
+  console.log("Locked in!");
+  DrawTarget();
+  lockin.innerText = "Go Next";
+  alert(`Location was: ${target.name}`);
+  score+=5000-5*lastDistance;
+  
+
+
+}
+function goNext()
+{
+  round+=1;
+  setupRound();
+
+}
+
+
+// Lock in button
+lockin.onclick = () => {
+  if(!LockedIn)
+  {
+     LockIn();
+  }
+  else{
+    goNext();
+
+  };
+ 
+
+};
