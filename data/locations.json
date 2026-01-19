@@ -4,6 +4,7 @@
     "name": "Floating Island",
     "x": 800,
     "z": -600,
-    "layer": "surface"
+    "layer": "surface",
+    "ss": "test"
   }
 ]

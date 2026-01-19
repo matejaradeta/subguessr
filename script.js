@@ -1,8 +1,10 @@
 const map = document.getElementById("map")
 const lockin = document.getElementById("lockin")
+const scene = document.getElementById("scene")
 const container = map.parentElement; // container div to position dots
 let selectedLayer = "surface";
 let locations = [];
+let img= null;
 
 
 // Setup rounds
@@ -127,6 +129,11 @@ function setupRound()
   
   selectedLayer = target.layer;
   map.src = `maps/${selectedLayer}.png`;
+  img = target.ss;
+  scene.src = `images/${img}.png`;
+
+
+  
 
   console.log("New target for this round:", target);
   
