@@ -1,19 +1,24 @@
 const map = document.getElementById("map");
-const container = map.parentElement; // parent div to position dots
+const container = map.parentElement; // container div to position dots
 let selectedLayer = null;
 
 // World dimensions
-const worldWidth = 4000;  // -2000 → 2000
-const worldHeight = 4000;
+const worldWidth = 4000;  // X-axis: -2000 → 2000
+const worldHeight = 4000; // Z-axis: -2000 → 2000
 
-// Example target in world coordinates
+// Example target (in world coordinates)
 const target = { x: 800, z: -600 };
 
-// Layer buttons
+// Layer selection
 document.querySelectorAll("#layers button").forEach(btn => {
   btn.onclick = () => {
     selectedLayer = btn.dataset.layer;
     console.log("Layer selected:", selectedLayer);
+
+    // Optional: Change map image based on layer
+    if (selectedLayer === "surface") map.src = "maps/surface.png";
+    else if (selectedLayer === "jellyshroom") map.src = "maps/jellyshroom.png";
+    else if (selectedLayer === "lost_river") map.src = "maps/lost_river.png";
   };
 });
 
@@ -24,11 +29,9 @@ map.addEventListener("click", e => {
     return;
   }
 
-  // mx, my = click coordinates relative to the image itself
+  // Click relative to image
   const mx = e.offsetX;
   const my = e.offsetY;
-
-  console.log("Click in image:", mx, my);
 
   // Convert to world coordinates
   const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
@@ -36,10 +39,16 @@ map.addEventListener("click", e => {
 
   console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
 
+  // Distance to target
+  const dx = worldX - target.x;
+  const dz = worldZ - target.z;
+  const distance = Math.sqrt(dx*dx + dz*dz);
+  console.log("Distance to target:", distance.toFixed(0), "units");
+
   // Remove old dots
   container.querySelectorAll(".dot").forEach(dot => dot.remove());
 
-  // Draw guess dot
+  // Draw guess dot (shifted down by 1000px)
   const guessDot = document.createElement("div");
   guessDot.className = "dot";
   guessDot.style.position = "absolute";
@@ -48,13 +57,10 @@ map.addEventListener("click", e => {
   guessDot.style.backgroundColor = "red";
   guessDot.style.borderRadius = "50%";
   guessDot.style.left = `${mx - 5}px`;
- guessDot.style.top = `${my - 5 + 1000}px`;
+  guessDot.style.top = `${my - 5 + 1000}px`; // <-- 1000px downward shift
   container.appendChild(guessDot);
-  
 
-
-
-  // Draw target dot
+  // Draw target dot (shifted down by 1000px)
   const targetX = ((target.x + worldWidth/2) / worldWidth) * map.width;
   const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height;
 
@@ -66,6 +72,6 @@ map.addEventListener("click", e => {
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
   targetDot.style.left = `${targetX - 5}px`;
-  targetDot.style.top = `${targetZ - 5 + 1000}px`;
+  targetDot.style.top = `${targetZ - 5 + 1000}px`; // <-- 1000px downward shift
   container.appendChild(targetDot);
 });
