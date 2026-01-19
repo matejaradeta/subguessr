@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Subnautica GeoGuessr</title>
+  <meta charset="UTF-8" />
+  <title>Subnautica Guesser</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Subnautica GeoGuessr</h1>
-  <img id="locationImage" alt="Location">
+<h1>Subnautica Guesser</h1>
 
-  <div id="choices"></div>
+<img id="scene" src="images/test.jpg" width="600">
 
-  <script src="script.js"></script>
+<div id="layers">
+  <button data-layer="surface">Surface</button>
+  <button data-layer="jellyshroom">Jellyshroom</button>
+  <button data-layer="lost_river">Lost River</button>
+</div>
+
+<canvas id="map" width="500" height="500"></canvas>
+
+<script src="main.js"></script>
 </body>
 </html>
