@@ -56,7 +56,7 @@ map.addEventListener("click", e => {
   guessDot.style.height = "10px";
   guessDot.style.backgroundColor = "red";
   guessDot.style.borderRadius = "50%";
-  guessDot.style.left = `${mx - 5}px`;
+  guessDot.style.left = `${mx - 20}px`;
   guessDot.style.top = `${my - 5 + 450}px`; // <-- 1000px downward shift
   container.appendChild(guessDot);
 
@@ -71,7 +71,7 @@ map.addEventListener("click", e => {
   targetDot.style.height = "10px";
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
-  targetDot.style.left = `${targetX - 5}px`;
+  targetDot.style.left = `${targetX - 20}px`;
   targetDot.style.top = `${targetZ - 5 + 450}px`; // <-- 1000px downward shift
   container.appendChild(targetDot);
 });
