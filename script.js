@@ -53,7 +53,7 @@ map.addEventListener("click", e => {
 
   // Draw target dot
   const targetX = ((target.x + worldWidth/2) / worldWidth) * map.width;
-  const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height;
+  const targetZ = ((target.z + worldHeight/2) / worldHeight) * map.height-1000px;
 
   const targetDot = document.createElement("div");
   targetDot.className = "dot";
