@@ -1,5 +1,5 @@
 const map = document.getElementById("map");
-const ctx = map.getContext("2d");
+
 
 let selectedLayer = null;
 
@@ -22,6 +22,3 @@ map.addEventListener("click", e => {
 
   console.log("Map click:", mx, my);
 });
-ctx.fillStyle = "#0b1d2a";
-ctx.fillRect(0, 0, map.width, map.height);
-
