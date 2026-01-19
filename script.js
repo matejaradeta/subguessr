@@ -1,6 +1,5 @@
 const map = document.getElementById("map");
 
-
 let selectedLayer = null;
 
 document.querySelectorAll("#layers button").forEach(btn => {
@@ -22,3 +21,4 @@ map.addEventListener("click", e => {
 
   console.log("Map click:", mx, my);
 });
+
