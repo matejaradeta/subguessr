@@ -1,3 +1,23 @@
+const map = document.getElementById("map");
+const container = map.parentElement; // parent div to position dots
+let selectedLayer = null;
+
+// World dimensions
+const worldWidth = 4000;  // -2000 → 2000
+const worldHeight = 4000;
+
+// Example target in world coordinates
+const target = { x: 800, z: -600 };
+
+// Layer buttons
+document.querySelectorAll("#layers button").forEach(btn => {
+  btn.onclick = () => {
+    selectedLayer = btn.dataset.layer;
+    console.log("Layer selected:", selectedLayer);
+  };
+});
+
+// Click on map
 map.addEventListener("click", e => {
   if (!selectedLayer) {
     alert("Choose a layer first!");
