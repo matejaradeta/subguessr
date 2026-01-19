@@ -1,44 +1,20 @@
-const map = document.getElementById("map");
-const container = map.parentElement; // parent div to position dots
-let selectedLayer = null;
-
-
-const worldWidth = 4000;  // -2000 → 2000
-const worldHeight = 4000;
-
-// Example target in world coordinates
-const target = { x: 800, z: -600 };
-
-// Layer buttons
-document.querySelectorAll("#layers button").forEach(btn => {
-  btn.onclick = () => {
-    selectedLayer = btn.dataset.layer;
-    console.log("Layer selected:", selectedLayer);
-  };
-});
-
-// Click on map
 map.addEventListener("click", e => {
   if (!selectedLayer) {
     alert("Choose a layer first!");
     return;
   }
 
-  const rect = map.getBoundingClientRect();
-  const mx = e.clientX - rect.left; // pixel inside image
-  const my = e.clientY - rect.top;
+  // mx, my = click coordinates relative to the image itself
+  const mx = e.offsetX;
+  const my = e.offsetY;
+
+  console.log("Click in image:", mx, my);
 
   // Convert to world coordinates
   const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
   const worldZ = (my / map.height) * worldHeight - worldHeight / 2;
 
   console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
-
-  // Distance to target
-  const dx = worldX - target.x;
-  const dz = worldZ - target.z;
-  const distance = Math.sqrt(dx*dx + dz*dz);
-  console.log("Distance to target:", distance.toFixed(0), "units");
 
   // Remove old dots
   container.querySelectorAll(".dot").forEach(dot => dot.remove());
@@ -51,7 +27,7 @@ map.addEventListener("click", e => {
   guessDot.style.height = "10px";
   guessDot.style.backgroundColor = "red";
   guessDot.style.borderRadius = "50%";
-  guessDot.style.left = `${mx - 5}px`; // center dot
+  guessDot.style.left = `${mx - 5}px`;
   guessDot.style.top = `${my - 5}px`;
   container.appendChild(guessDot);
 
