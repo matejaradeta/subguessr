@@ -2,7 +2,7 @@ const map = document.getElementById("map");
 const container = map.parentElement; // parent div to position dots
 let selectedLayer = null;
 
-// World dimensions
+
 const worldWidth = 4000;  // -2000 → 2000
 const worldHeight = 4000;
 
