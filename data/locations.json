@@ -18,7 +18,34 @@
     
   },
   {
-    "id": 1,
+    "id": 3,
+    "name": "Floating Island",
+    "x": 800,
+    "z": -600,
+    "layer": "surface",
+    "ss": "test"
+    
+  },
+  {
+    "id": 4,
+    "name": "Floating Island",
+    "x": 800,
+    "z": -600,
+    "layer": "surface",
+    "ss": "test"
+    
+  },
+  {
+    "id": 5,
+    "name": "Floating Island",
+    "x": 800,
+    "z": -600,
+    "layer": "surface",
+    "ss": "test"
+    
+  },
+  {
+    "id": 6,
     "name": "Floating Island",
     "x": 800,
     "z": -600,
@@ -26,4 +53,5 @@
     "ss": "test"
     
   }
+  
 ]
