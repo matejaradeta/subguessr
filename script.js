@@ -6,6 +6,8 @@ const scene = document.getElementById("scene")
 const startScreen = document.getElementById("startScreen")
 const gameUI= document.getElementById("gameui")
 const startbtn= document.getElementById("startbtn")
+const finish= document.getElementById("finish")
+const finishscore = document.getElementById("finishscore")
 const container = map.parentElement; // container div to position dots
 let selectedLayer = "surface";
 let locations = [];
@@ -13,6 +15,7 @@ let img= null;
 
 //Setup game
 let GameStarted = false;
+let LastRound = false;
 
 
 // Setup rounds
@@ -53,9 +56,21 @@ function GameStart()
   showGameUI();
   
 }
+function FinishGame()
+{
+  gameUI.classList.add("hidden");
+  startScreen.classList.add("hidden");
+  finishscore.classList.remove("hidden");
+  finishscore.innerText = "Final score is: "+ score;
+  
+
+}
 startbtn.onclick=()=>{
   GameStart();
 
+}
+finish.onclick=()=>{
+  FinishGame();
 }
 
 
@@ -161,14 +176,25 @@ function setupRound()
 }
 function LockIn()
 {
-  LockedIn = true;
-  console.log("Locked in!");
-  DrawTarget();
-  lockin.innerText = "Go Next";
-  alert(`Location was: ${target.name}`);
-  score+=floor(5000-5*lastDistance);
-  scoretxt.innerText="Score: "+ score;
-
+  if(!LastRound)
+  {
+    LockedIn = true;
+    console.log("Locked in!");
+    DrawTarget();
+    lockin.innerText = "Go Next";
+    score+=floor(5000-5*lastDistance);
+    scoretxt.innerText="Score: "+ score;
+  }
+  else{
+    DrawTarget();
+    
+    score+=floor(5000-5*lastDistance);
+    scoretxt.innerText="Score: "+ score;
+    finish.classList.remove("hidden");
+    
+  }
+  
+  
   
 
 
@@ -176,7 +202,11 @@ function LockIn()
 function goNext()
 {
   round+=1;
-  roundtxt.innerText="Round: "+ round;
+  if(round == 5)
+  {
+    LastRound = true;
+  }
+  roundtxt.innerText="Round: "+ round + "/5";
   setupRound();
 
 }
