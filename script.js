@@ -179,46 +179,30 @@ function setupRound()
   console.log("New target for this round:", target);
   
 }
-function LockIn()
-{
-  if(!LastRound)
-  {
-    LockedIn = true;
-    console.log("Locked in!");
-    DrawTarget();
-    lockin.innerText = "Go Next";
-    score+=Math.max(Math.floor(5000-5*lastDistance),0);
-    scoretxt.innerText="Score: "+ score;
-  }
-  else{
-    DrawTarget();
-    
-    score+=Math.max(Math.floor(5000-5*lastDistance),0);
-    scoretxt.innerText="Score: "+ score;
-    finish.classList.remove("hidden");
-    
-  }
-  
-  
-  
-
-
-}
-function goNext()
-{
-  round+=1;
- if (round >= 5) {
-  LastRound = true;
- }
-
-  roundtxt.innerText="Round: "+ round + "/5";
-  if(!LastRound)
-  {
+function goNext() {
+  round += 1;
+  if (round > 5) {
+    FinishGame(); // after the last round
+  } else {
+    roundtxt.innerText = "Round: " + round + "/5";
     setupRound();
   }
-  
-
 }
+
+function LockIn() {
+  LockedIn = true;
+  DrawTarget();
+  score += Math.max(Math.floor(5000 - 5 * lastDistance), 0);
+  scoretxt.innerText = "Score: " + score;
+
+  if (round === 5) {
+    finish.classList.remove("hidden");
+    lockin.disabled = true; // optional: disable lock-in button
+  } else {
+    lockin.innerText = "Go Next";
+  }
+}
+
 
 
 // Lock in button
