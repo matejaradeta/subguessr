@@ -136,8 +136,8 @@ function mapClick(e)
     guessDot.style.height = "10px";
     guessDot.style.backgroundColor = "red";
     guessDot.style.borderRadius = "50%";
-    guessDot.style.left = `${targetX - 5}px`;
-    guessDot.style.top  = `${targetZ - 5}px`;
+    guessDot.style.left = `${mx - 5}px`;
+    guessDot.style.top  = `${my - 5}px`;
 
     container.appendChild(guessDot);
 }
