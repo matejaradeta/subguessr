@@ -1,5 +1,6 @@
 const map = document.getElementById("map")
-const scoretxt = document.getElementById("score")
+const scoretxt = document.getElementById("scoretxt")
+const roundtxt= document.getElementById("roundtxt")
 const lockin = document.getElementById("lockin")
 const scene = document.getElementById("scene")
 const startScreen = document.getElementById("startScreen")
@@ -158,10 +159,6 @@ function setupRound()
   map.src = `maps/${selectedLayer}.png`;
   img = target.ss;
   scene.src = `images/${img}.png`;
-
-
-  
-
   console.log("New target for this round:", target);
   
   //more will be added here
@@ -183,6 +180,7 @@ function LockIn()
 function goNext()
 {
   round+=1;
+  roundtxt.innerText="Round: "+ round;
   setupRound();
 
 }
