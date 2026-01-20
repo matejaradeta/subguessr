@@ -6,5 +6,24 @@
     "z": -600,
     "layer": "surface",
     "ss": "test"
+    
+  },
+  {
+    "id": 2,
+    "name": "Floating Island",
+    "x": 800,
+    "z": -600,
+    "layer": "surface",
+    "ss": "test"
+    
+  },
+  {
+    "id": 1,
+    "name": "Floating Island",
+    "x": 800,
+    "z": -600,
+    "layer": "surface",
+    "ss": "test"
+    
   }
 ]
