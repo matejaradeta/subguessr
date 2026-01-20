@@ -8,7 +8,8 @@ const gameUI= document.getElementById("gameui")
 const startbtn= document.getElementById("startbtn")
 const finish= document.getElementById("finish")
 const finishscore = document.getElementById("finishscore")
-const container = map.parentElement; // container div to position dots
+const container = document.getElementById("mapWrapper");
+
 let selectedLayer = "surface";
 let locations = [];
 let img= null;
@@ -135,8 +136,9 @@ function mapClick(e)
     guessDot.style.height = "10px";
     guessDot.style.backgroundColor = "red";
     guessDot.style.borderRadius = "50%";
-    guessDot.style.left = `${mx + 10}px`;
-    guessDot.style.top = `${my - 5 + 450}px`; 
+    guessDot.style.left = `${targetX - 5}px`;
+    guessDot.style.top  = `${targetZ - 5}px`;
+
     container.appendChild(guessDot);
 }
 
@@ -150,7 +152,7 @@ map.addEventListener("click", e => {
 // Function to draw target dot (outside the click listener)
 function DrawTarget() {
   const targetX = ((target.x + worldWidth / 2) / worldWidth) * map.width;
-  const targetZ = -1*((target.z + worldHeight / 2) / worldHeight) * map.height;
+  const targetZ = ((target.z + worldHeight / 2) / worldHeight) * map.height;
 
   const targetDot = document.createElement("div");
   targetDot.className = "dot";
@@ -159,8 +161,9 @@ function DrawTarget() {
   targetDot.style.height = "10px";
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
-  targetDot.style.left = `${targetX + 10}px`;
-  targetDot.style.top = `${targetZ - 5 + 450}px`;
+  targetDot.style.left = `${targetX - 5}px`;
+  targetDot.style.top  = `${targetZ - 5}px`;
+
   container.appendChild(targetDot);
 }
 function setupRound()
