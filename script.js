@@ -167,7 +167,7 @@ function LockIn()
   DrawTarget();
   lockin.innerText = "Go Next";
   alert(`Location was: ${target.name}`);
-  score+=5000-5*lastDistance;
+  score+=floor(5000-5*lastDistance);
   scoretxt.innerText="Score: "+ score;
 
   
