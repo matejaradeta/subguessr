@@ -62,7 +62,7 @@ function FinishGame()
   startScreen.classList.add("hidden");
   finishscore.classList.remove("hidden");
   finishscore.innerText = "Final score is: "+ score;
-  
+
 
 }
 startbtn.onclick=()=>{
@@ -182,7 +182,7 @@ function LockIn()
     console.log("Locked in!");
     DrawTarget();
     lockin.innerText = "Go Next";
-    score+=floor(5000-5*lastDistance);
+    score+=Math.max(Math.floor(5000-5*lastDistance),0);
     scoretxt.innerText="Score: "+ score;
   }
   else{
