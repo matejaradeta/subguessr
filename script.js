@@ -208,6 +208,9 @@ function LockIn() {
   } else {
     lockin.innerText = "Go Next";
   }
+  console.log("Guess:", worldX, worldZ);
+  console.log("Target:", target.x, target.z);
+
 }
 
 
