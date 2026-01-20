@@ -23,7 +23,7 @@ let LockedIn = false;
 let round = 1;
 let target =null;
 let score=0;
-let lastDistance = 0;
+let lastDistance = 0; 
 
 
 // Setup json
@@ -32,7 +32,7 @@ fetch("data/locations.json")
   .then(data => {
     locations = data;
     console.log("Locations loaded:", locations);
-    setupRound();
+    
   })
   .catch(err => console.error("Failed to load locations:", err));
 
@@ -63,6 +63,8 @@ function FinishGame()
   finishscore.classList.remove("hidden");
   finishscore.innerText = "Final score is: "+ score;
   finish.classList.add("hidden");
+  container.querySelectorAll(".dot").forEach(dot => dot.remove());
+
 
 
 }
@@ -94,6 +96,8 @@ document.querySelectorAll("#layers button").forEach(btn => {
 });
 function mapClick(e)
 {
+  if (LockedIn) return;
+
   if (!target) {
     alert("Locations are still loading. Please wait...");
     return;
@@ -203,12 +207,16 @@ function LockIn()
 function goNext()
 {
   round+=1;
-  if(round == 5)
-  {
-    LastRound = true;
-  }
+ if (round >= 5) {
+  LastRound = true;
+ }
+
   roundtxt.innerText="Round: "+ round + "/5";
-  setupRound();
+  if(!LastRound)
+  {
+    setupRound();
+  }
+  
 
 }
 
