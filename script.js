@@ -11,7 +11,7 @@ let locations = [];
 let img= null;
 
 //Setup game
-let GameStart = false;
+let GameStarted = false;
 
 
 // Setup rounds
@@ -47,7 +47,7 @@ function showGameUI()
 //Game Start
 function GameStart()
 {
-  GameStart= true;
+  GameStarted= true;
   setupRound();
   showGameUI();
   
