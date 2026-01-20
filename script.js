@@ -148,10 +148,7 @@ function setupRound()
   LockedIn=false;
   container.querySelectorAll(".dot").forEach(dot => dot.remove());
   lockin.innerText = "Lock In"; // reset button text
-  if (locations.length === 0) {
-    alert("No more locations left!");
-    return;
-  }
+  
   const randomIndex = Math.floor(Math.random() * locations.length);
   target = locations.splice(randomIndex, 1)[0];
   
