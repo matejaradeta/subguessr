@@ -188,7 +188,7 @@ function LockIn()
   else{
     DrawTarget();
     
-    score+=floor(5000-5*lastDistance);
+    score+=Math.max(Math.floor(5000-5*lastDistance),0);
     scoretxt.innerText="Score: "+ score;
     finish.classList.remove("hidden");
     
