@@ -150,7 +150,7 @@ map.addEventListener("click", e => {
 // Function to draw target dot (outside the click listener)
 function DrawTarget() {
   const targetX = ((target.x + worldWidth / 2) / worldWidth) * map.width;
-  const targetZ = ((target.z + worldHeight / 2) / worldHeight) * map.height;
+  const targetZ = -1*((target.z + worldHeight / 2) / worldHeight) * map.height;
 
   const targetDot = document.createElement("div");
   targetDot.className = "dot";
