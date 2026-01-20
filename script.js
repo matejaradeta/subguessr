@@ -4,6 +4,7 @@ const lockin = document.getElementById("lockin")
 const scene = document.getElementById("scene")
 const startScreen = document.getElementById("startScreen")
 const gameUI= document.getElementById("gameui")
+const startbtn= document.getElementById("startbtn")
 const container = map.parentElement; // container div to position dots
 let selectedLayer = "surface";
 let locations = [];
@@ -51,7 +52,10 @@ function GameStart()
   showGameUI();
   
 }
+startbtn.onclick=()=>{
+  GameStart();
 
+}
 
 
 // Layer selection
