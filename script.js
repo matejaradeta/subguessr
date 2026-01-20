@@ -158,7 +158,6 @@ function setupRound()
   scene.src = `images/${img}.png`;
   console.log("New target for this round:", target);
   
-  //more will be added here
 }
 function LockIn()
 {
