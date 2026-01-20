@@ -62,6 +62,7 @@ function FinishGame()
   startScreen.classList.add("hidden");
   finishscore.classList.remove("hidden");
   finishscore.innerText = "Final score is: "+ score;
+  finish.classList.add("hidden");
 
 
 }
