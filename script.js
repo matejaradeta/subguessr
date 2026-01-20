@@ -2,6 +2,8 @@ const map = document.getElementById("map")
 const scoretxt = document.getElementById("score")
 const lockin = document.getElementById("lockin")
 const scene = document.getElementById("scene")
+const startScreen = document.getElementById("startScreen")
+const gameUI= document.getElementById("gameui")
 const container = map.parentElement; // container div to position dots
 let selectedLayer = "surface";
 let locations = [];
@@ -32,6 +34,23 @@ fetch("data/locations.json")
 // World dimensions
 const worldWidth = 4000;  // X-axis: -2000 → 2000
 const worldHeight = 4000; // Z-axis: -2000 → 2000
+
+
+
+function showGameUI()
+{
+  gameUI.classList.remove("hidden");
+  startScreen.classList.add("hidden");
+}
+
+//Game Start
+function GameStart()
+{
+  GameStart= true;
+  setupRound();
+  showGameUI();
+  
+}
 
 
 
