@@ -114,7 +114,9 @@ function mapClick(e)
 
     // Convert to world coordinates
     const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
-    const worldZ = (my / map.height) * worldHeight - worldHeight / 2;
+   const worldZ =
+  (1 - my / map.height) * worldHeight - worldHeight / 2;
+
 
     console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
 
