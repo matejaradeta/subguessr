@@ -6,22 +6,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<h1>Subguessr</h1>
-
-<img id="scene" src="images/test.png" width="600"><!-- Screenshot -->
-
-<div id="layers">
-  <button data-layer="surface">Surface</button>
-  <button data-layer="jellyshroom">Jellyshroom</button>
-  <button data-layer="lost_river">Lost River</button>
-   <button data-layer="lava_zone">Inactive Lava Zone</button>
-  <button data-layer="lava_lakes">Lava Lakes</button>
- 
+  <!-- Start Screen-->
+<div id="startScreen">
+    <h1>Subnautica GeoGuessr</h1>
+    <p>Guess the location based on the map layer.</p>
+    <button id="startBtn">Start Game</button>
 </div>
 
-<img id="map" src="maps/surface.png"width="500" height="500"></img>
-<button id="lockin">LOCK IN ANSWER</button>
+
+<!-- Game UI-->
+<div id="gameui">
+    <h1>Subguessr</h1>
+    <div id="topBar">
+      <span id="roundTxt">Round: 1</span>
+      <span id="scoreTxt">Score: 0</span>
+    </div>
+   
+
+    <img id="scene" src="images/test.png" width="600"><!-- Screenshot -->
+
+    <div id="layers">
+      <button data-layer="surface">Surface</button>
+      <button data-layer="jellyshroom">Jellyshroom</button>
+      <button data-layer="lost_river">Lost River</button>
+      <button data-layer="lava_zone">Inactive Lava Zone</button>
+      <button data-layer="lava_lakes">Lava Lakes</button>
+ 
+    </div>
+
+  <img id="map" src="maps/surface.png"width="500" height="500"></img>
+   
+  <button id="lockin">LOCK IN ANSWER</button>
+
+</div>
 
 <script src="script.js"></script>
 </body>

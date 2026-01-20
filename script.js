@@ -1,10 +1,14 @@
 const map = document.getElementById("map")
+const scoretxt = document.getElementById("score")
 const lockin = document.getElementById("lockin")
 const scene = document.getElementById("scene")
 const container = map.parentElement; // container div to position dots
 let selectedLayer = "surface";
 let locations = [];
 let img= null;
+
+//Setup game
+let GameStart = false;
 
 
 // Setup rounds
@@ -147,6 +151,8 @@ function LockIn()
   lockin.innerText = "Go Next";
   alert(`Location was: ${target.name}`);
   score+=5000-5*lastDistance;
+  scoretxt.innerText="Score: "+ score;
+
   
 
 
