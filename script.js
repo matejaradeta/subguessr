@@ -175,7 +175,7 @@ function setupRound()
   selectedLayer = target.layer;
   map.src = `maps/${selectedLayer}.png`;
   img = target.ss;
-  scene.src = `images/${img}.png`;
+  scene.src = `images/${img}.jpg`;
   console.log("New target for this round:", target);
   
 }
@@ -192,7 +192,7 @@ function goNext() {
 function LockIn() {
   LockedIn = true;
   DrawTarget();
-  score += Math.max(Math.floor(5000 - 5 * lastDistance), 0);
+  score += Math.max(Math.floor(5000 - 5*(Math.max(125,lastDistance)-125)), 0);
   scoretxt.innerText = "Score: " + score;
 
   if (round === 5) {
