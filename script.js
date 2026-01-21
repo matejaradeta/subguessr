@@ -111,6 +111,7 @@ function mapClick(e)
     // Click relative to image
     const mx = e.offsetX;
     const my = e.offsetY;
+    lockin.disabled= false;
 
     // Convert to world coordinates
     const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
@@ -173,6 +174,7 @@ function DrawTarget() {
 function setupRound()
 {
   LockedIn=false;
+  lockin.disabled= true;
   container.querySelectorAll(".dot").forEach(dot => dot.remove());
   lockin.innerText = "Lock In"; // reset button text
   
