@@ -40,6 +40,47 @@
     "layer": "surface",
     "ss": "img5"
     
+  },
+  {
+    "id": 6,
+    "name": "Grand Reef 1",
+    "x": -604,
+    "z": -1274,
+    "layer": "surface",
+    "ss": "img6"
+    
+  },{
+    "id": 7,
+    "name": "Craig Field 1",
+    "x": -113,
+    "z": -1023,
+    "layer": "surface",
+    "ss": "img7"
+    
+  },{
+    "id": 8,
+    "name": "Sparse Reef 1",
+    "x": -713,
+    "z": -686,
+    "layer": "surface",
+    "ss": "img8"
+    
+  },{
+    "id": 9,
+    "name": "Jellyshroom 1",
+    "x": -307,
+    "z": -191,
+    "layer": "surface",
+    "ss": "img9"
+    
+  },{
+    "id": 10,
+    "name": "Aurora 1",
+    "x": 1374,
+    "z": 352,
+    "layer": "surface",
+    "ss": "img10"
+    
   }
   
 ]
