@@ -17,12 +17,15 @@
 
 <!-- Game UI-->
 <div id="gameui" class="hidden">
-    <h1>Subguessr</h1>
+    <h1 class="subtext">Subguessr</h1>
     
    
 
     <img id="scene" src="images/img1.jpg" width="600" ><!-- Screenshot -->
 
+    
+
+  <div id="mapWrapper">
     <div id="layers">
       <button data-layer="surface">Surface</button>
       <button data-layer="jellyshroom">Jellyshroom</button>
@@ -31,15 +34,14 @@
       <button data-layer="lava_lakes">Lava Lakes</button>
  
     </div>
-
-  <div id="mapWrapper">
   <img id="map" src="maps/surface.png" width="500" height="500">
+  
 </div>
 
    
   <button id="lockin">LOCK IN ANSWER</button>
-  <div id="topBar">
-      <h2 id="roundtxt">Round: 1</h2>
+  <div id="botUI" class="botUI">
+      <h2 id="roundtxt">Round: 1/5</h2>
       <h2 id="scoretxt">Score: 0</h2>
     </div>
 
