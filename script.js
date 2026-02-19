@@ -14,12 +14,11 @@ let selectedLayer = "surface";
 let locations = [];
 let img= null;
 
-//Setup game
 let GameStarted = false;
 let LastRound = false;
 
 
-// Setup rounds
+
 let LockedIn = false;
 let round = 1;
 let target =null;
@@ -27,7 +26,7 @@ let score=0;
 let lastDistance = 0; 
 
 
-// Setup json
+
 fetch("data/locations.json")
   .then(response => response.json())
   .then(data => {
@@ -37,9 +36,9 @@ fetch("data/locations.json")
   })
   .catch(err => console.error("Failed to load locations:", err));
 
-// World dimensions
-const worldWidth = 4000;  // X-axis: -2000 → 2000
-const worldHeight = 4000; // Z-axis: -2000 → 2000
+
+const worldWidth = 4000;  
+const worldHeight = 4000; 
 
 
 
@@ -49,7 +48,7 @@ function showGameUI()
   startScreen.classList.add("hidden");
 }
 
-//Game Start
+
 function GameStart()
 {
   GameStarted= true;
@@ -78,7 +77,7 @@ finish.onclick=()=>{
 }
 
 
-// Layer selection
+
 document.querySelectorAll("#layers button").forEach(btn => {
   btn.onclick = () => {
     if(!LockedIn){
@@ -141,7 +140,7 @@ function mapClick(e)
     guessDot.style.backgroundColor = "red";
     guessDot.style.borderRadius = "50%";
     guessDot.style.left = `${mx - 5}px`;
-    guessDot.style.top  = `${my - 5}px`;
+    guessDot.style.top  = `${my + 50}px`;
 
     container.appendChild(guessDot);
 }
@@ -168,7 +167,7 @@ function DrawTarget() {
   targetDot.style.backgroundColor = "green";
   targetDot.style.borderRadius = "50%";
   targetDot.style.left = `${targetX - 5}px`;
-  targetDot.style.top  = `${targetZ - 5}px`;
+  targetDot.style.top  = `${targetZ + 50}px`;
 
   container.appendChild(targetDot);
 }
@@ -192,7 +191,7 @@ function setupRound()
 function goNext() {
   round += 1;
   if (round > 5) {
-    FinishGame(); // after the last round
+    FinishGame(); 
   } else {
     roundtxt.innerText = " Round: " + round + "/5";
     setupRound();
@@ -207,7 +206,7 @@ function LockIn() {
 
   if (round === 5) {
     finish.classList.remove("hidden");
-    lockin.disabled = true; // optional: disable lock-in button
+    lockin.disabled = true; 
   } else {
     lockin.innerText = "Go Next";
   }
@@ -218,7 +217,7 @@ function LockIn() {
 
 
 
-// Lock in button
+
 lockin.onclick = () => {
   if(!LockedIn)
   {
