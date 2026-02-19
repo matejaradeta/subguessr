@@ -2,7 +2,7 @@
   display: none;
 }
 #mapWrapper {
-  position: fixed;
+  position: relative;
   width: 500px;
   height: 500px;
   bottom: 10px;
