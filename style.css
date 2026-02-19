@@ -106,8 +106,17 @@
   opacity:1;
 }
 body{
-  background-color: dimgrey;
+  
+  background-color: #000000; /* fallback color */
+  background-image: url('images/oceanbg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+
+ 
+
 #finishscore{
   color: aliceblue;
   position: fixed;
@@ -116,4 +125,10 @@ body{
   width:300px;
   height: 100px;
   font-size: 32px;
+}
+#fih{
+  position:fixed;
+  top:25px;
+  right:25px;
+  pointer-events: none;
 }
