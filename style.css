@@ -79,3 +79,41 @@
   font-size: 32px;
 
 }
+#startScreen{
+  position:fixed;
+  top:30%;
+  left:40%;
+  color: aliceblue;
+
+}
+.startp{
+  position: relative;
+  left:12%;
+  
+}
+
+
+#startbtn{
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  position: relative;
+  left:25%;
+  width:  200px;
+  height: 80px;
+  font-size: 32px;
+}
+#startbtn:hover{
+  opacity:1;
+}
+body{
+  background-color: dimgrey;
+}
+#finishscore{
+  color: aliceblue;
+  position: fixed;
+  left:40%;
+  top:40%;
+  width:300px;
+  height: 100px;
+  font-size: 32px;
+}
