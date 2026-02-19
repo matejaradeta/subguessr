@@ -109,8 +109,9 @@ function mapClick(e)
     }
 
     // Click relative to image
-    const mx = e.offsetX;
-    const my = e.offsetY;
+    const rect = map.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
     lockin.disabled= false;
 
     // Convert to world coordinates
