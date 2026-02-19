@@ -108,13 +108,13 @@ function mapClick(e)
       return;
     }
 
-    // Click relative to image
+   
     const rect = map.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
     lockin.disabled= false;
 
-    // Convert to world coordinates
+
     const worldX = (mx / map.width) * worldWidth - worldWidth / 2;
    const worldZ =
   (1 - my / map.height) * worldHeight - worldHeight / 2;
@@ -122,17 +122,17 @@ function mapClick(e)
 
     console.log("World coords:", worldX.toFixed(0), worldZ.toFixed(0));
 
-    // Distance to target
+  
     const dx = worldX - target.x;
     const dz = worldZ - target.z;
     const distance = Math.sqrt(dx * dx + dz * dz);
     lastDistance=distance;
     console.log("Distance to target:", distance.toFixed(0), "units");
 
-    // Remove old dots
+    
     container.querySelectorAll(".dot").forEach(dot => dot.remove());
 
-    // Draw guess dot 
+    
     const guessDot = document.createElement("div");
     guessDot.className = "dot";
     guessDot.style.position = "absolute";
@@ -146,14 +146,14 @@ function mapClick(e)
     container.appendChild(guessDot);
 }
 
-// Map click
+
 map.addEventListener("click", e => {
   if (!LockedIn) {
     mapClick(e);
   }
 });
 
-// Function to draw target dot (outside the click listener)
+
 function DrawTarget() {
   const targetX = ((target.x + worldWidth / 2) / worldWidth) * map.width;
   const targetZ =
@@ -177,7 +177,7 @@ function setupRound()
   LockedIn=false;
   lockin.disabled= true;
   container.querySelectorAll(".dot").forEach(dot => dot.remove());
-  lockin.innerText = "Lock In"; // reset button text
+  lockin.innerText = "Lock In"; 
   
   const randomIndex = Math.floor(Math.random() * locations.length);
   target = locations.splice(randomIndex, 1)[0];
@@ -194,7 +194,7 @@ function goNext() {
   if (round > 5) {
     FinishGame(); // after the last round
   } else {
-    roundtxt.innerText = "Round: " + round + "/5";
+    roundtxt.innerText = " Round: " + round + "/5";
     setupRound();
   }
 }
